@@ -10,10 +10,15 @@ gray_img=cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 # Store Width and Height
 faces=face_cascade.detectMultiScale(gray_img, scaleFactor=1.05, minNeighbors=5)
 
+# loop through faces array to access coord
+for x,y,width,height in faces:
+    # draw rectangle, 1st arg starting point of rectangle (top-left), 2nd arg coord of other corner (bottom-right), 3rd Color, 4th Width of rectangle
+    img=cv2.rectangle(img, (x,y),(x + width, y + height),(0,255,0),3)
+
 print(faces)
 print(type(faces))
-# Show gray img
-cv2.imshow('Gray', gray_img)
+# Show img
+cv2.imshow('Face Detected', img)
 # press any key it closes window
 cv2.waitKey(0)
 cv2.destroyAllWindows()
